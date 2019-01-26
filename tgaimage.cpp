@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 #include <math.h>
 #include "tgaimage.h"
 
@@ -14,7 +14,7 @@ TGAImage::TGAImage(int w, int h, int bpp) : data(NULL), width(w), height(h), byt
 	memset(data, 0, nbytes);
 }
 
-TGAImage::TGAImage(TGAImage &img) {
+TGAImage::TGAImage(const TGAImage &img) {
 	width = img.width;
 	height = img.height;
 	bytespp = img.bytespp;
@@ -205,6 +205,7 @@ bool TGAImage::write_tga_file(const char *filename, bool rle) {
 	return true;
 }
 
+// TODO: it is not necessary to break a raw chunk for two equal pixels (for the matter of the resulting size)
 bool TGAImage::unload_rle_data(std::ofstream &out) {
 	const unsigned char max_chunk_length = 128;
 	unsigned long npixels = width*height;
@@ -348,3 +349,4 @@ bool TGAImage::scale(int w, int h) {
 	height = h;
 	return true;
 }
+
