@@ -57,6 +57,7 @@ template<class T> std::ostream& operator <<(std::ostream& s, Vec2<T>& v) {
 
 template<class T> std::ostream& operator <<(std::ostream& s, Vec3<T>& v) {
 	s << "(" << v.x << ", " << v.y << ", " << v.z << ")\n";
+	return s;
 }
 
 #endif //__math3D_H__
